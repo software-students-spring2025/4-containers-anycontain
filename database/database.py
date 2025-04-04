@@ -1,60 +1,74 @@
 import os
-from datetime import datetime
 from pymongo import MongoClient
+from bson.binary import Binary
 from dotenv import load_dotenv
 
-def main():
-    # Optionally load environment variables from a .env file
-    load_dotenv("x.env")
+def store_image(binary_data, animal_or_not=0, image_type="", text_description="", env_file="x.env"):
+
+    load_dotenv(env_file)
+    connection_string = os.environ.get("MONGODB_URI")
     
-    # Use your provided MongoDB URI with the default database name 'AnimalDetector'
-    mongodb_uri = "mongodb+srv://yn2178:00000000@cluster0.mkz5hkh.mongodb.net/AnimalDetector?retryWrites=true&w=majority"
+    client = MongoClient(connection_string)
+    db = client.get_database("AnimalDetector")
     
-    # Connect to MongoDB
-    client = MongoClient(mongodb_uri)
-    # Use the 'AnimalDetector' database (this will be created if it doesn't exist)
-    db = client["AnimalDetector"]
+    bson_binary = Binary(binary_data)
+    
+    document = {
+        "image_data": bson_binary,
+        "animal_or_not": animal_or_not,
+        "type": image_type,
+        "text_description": text_description
+    }
+    
+    result = db.pictures.insert_one(document)
+    return result.inserted_id
 
-    # Example 1: Create an 'animals' collection with sample animal data
-    animals = db.animals
-    # Clear existing data (for testing purposes)
-    animals.delete_many({})
-    animals_data = [
-        {"name": "Deer", "reminder": "Stay calm and do not disturb."},
-        {"name": "Bear", "reminder": "Keep a safe distance and alert authorities."},
-        {"name": "Fox", "reminder": "Observe quietly."}
-    ]
-    animal_result = animals.insert_many(animals_data)
-    print("Inserted animal records:", animal_result.inserted_ids)
 
-    # Example 2: Create an 'images' collection that stores image recognition data
-    images = db.images
-    images.delete_many({})
-    sample_images = [
-        {
-            "image": "photo_001.jpg",  # image filename or URL
-            "is_animal": True,         # indicates animal presence
-            "species": "Deer",         # the species identified
-            "description": "A calm deer standing in the forest.",
-            "upload_time": datetime.utcnow().isoformat()
-        },
-        {
-            "image": "photo_002.jpg",
-            "is_animal": False,
-            "species": "",
-            "description": "An empty scene with no animal present.",
-            "upload_time": datetime.utcnow().isoformat()
-        },
-        {
-            "image": "photo_003.jpg",
-            "is_animal": True,
-            "species": "Bear",
-            "description": "A wild bear roaming in its natural habitat.",
-            "upload_time": datetime.utcnow().isoformat()
-        }
-    ]
-    image_result = images.insert_many(sample_images)
-    print("Inserted image records:", image_result.inserted_ids)
+def fetch_all_pictures(env_file="x.env"):
 
-if __name__ == "__main__":
-    main()
+    load_dotenv(env_file)
+    connection_string = os.environ.get("MONGODB_URI")
+
+    client = MongoClient(connection_string)
+    db = client.get_database("AnimalDetector")
+
+    documents = list(db.pictures.find())
+    
+    images = []
+    for doc in documents:
+        binary_data = doc.get("image_data")
+        if binary_data is not None:
+            nparr = np.frombuffer(binary_data, np.uint8)
+            image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+            images.append(image)
+    
+    return images
+
+def download_images(images, output_dir="example_fetched_picture"):
+ 
+    os.makedirs(output_dir, exist_ok=True)
+    
+    for idx, image in enumerate(images):
+        filename = os.path.join(output_dir, f"image_{idx}.jpg")
+        cv2.imwrite(filename, image)
+        print(f"Saved {filename}")
+
+
+
+
+
+
+# Sample for store_image
+# if __name__ == "__main__":
+#     with open("sample1.jpg", "rb") as image_file:
+#         binary_data = image_file.read()
+    
+#     inserted_id = store_image(binary_data)
+#     print("Inserted document with id:", inserted_id)
+
+
+# Sample for fetch_all_pictures
+# if __name__ == "__main__":
+#     images = fetch_all_pictures("x.env")
+#     print(f"Fetched {len(images)} images.")
+#     download_images(images, output_dir="example_fetched_picture")
