@@ -1,4 +1,6 @@
 import os
+import numpy as np
+import cv2
 from pymongo import MongoClient
 from bson.binary import Binary
 from dotenv import load_dotenv
@@ -53,8 +55,49 @@ def download_images(images, output_dir="example_fetched_picture"):
         cv2.imwrite(filename, image)
         print(f"Saved {filename}")
 
+def fetch_id_and_image_data(env_file="x.env"):
+    
+    load_dotenv(env_file)
+    connection_string = os.environ.get("MONGODB_URI")
 
+    client = MongoClient(connection_string)
+    db = client.get_database("AnimalDetector")
 
+    
+    cursor = db.pictures.find({}, {"_id": 1, "image_data": 1})
+    
+    results = []
+    for doc in cursor:
+        results.append({
+            "_id": doc["_id"],
+            "image_data": doc["image_data"]
+        })
+    
+    return results
+
+def update_classification(document_id, animal_or_not, image_type, text_description, env_file="x.env"):
+    
+    load_dotenv(env_file)
+    connection_string = os.environ.get("MONGODB_URI")
+
+    client = MongoClient(connection_string)
+    db = client.get_database("AnimalDetector")
+
+    update_fields = {
+        "animal_or_not": animal_or_not,
+        "type": image_type,
+        "text_description": text_description
+    }
+
+    result = db.pictures.update_one(
+        {"_id": document_id},
+        {"$set": update_fields}
+    )
+
+    return result.modified_count
+
+def _id_repr(_id):
+    return str(_id)
 
 
 
