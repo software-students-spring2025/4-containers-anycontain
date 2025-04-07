@@ -19,9 +19,9 @@ def store_image(binary_data, animal_or_not=0, image_type="", text_description=""
         "image_data": bson_binary,
         "animal_or_not": animal_or_not,
         "type": image_type,
-        "text_description": text_description
+        "text_description": text_description,
+        "processed": False
     }
-    
     result = db.pictures.insert_one(document)
     return result.inserted_id
 
@@ -86,9 +86,9 @@ def update_classification(document_id, animal_or_not, image_type, text_descripti
     update_fields = {
         "animal_or_not": animal_or_not,
         "type": image_type,
-        "text_description": text_description
+        "text_description": text_description,
+        "processed": processed  # update the processed flag
     }
-
     result = db.pictures.update_one(
         {"_id": document_id},
         {"$set": update_fields}
