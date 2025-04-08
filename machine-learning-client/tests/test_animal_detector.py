@@ -3,7 +3,7 @@ Module for testing the animal_detector module.
 """
 
 import pytest  # pylint: disable=import-error
-from animal_detector import AnimalDetector  # pylint: disable=import-error
+from detector import AnimalDetector  # pylint: disable=import-error
 
 
 class DummyProcessor:  # pylint: disable=too-few-public-methods
