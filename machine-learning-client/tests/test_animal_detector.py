@@ -2,8 +2,11 @@
 Module for testing the animal_detector module.
 """
 
+# Disable redefined-outer-name for fixture parameters in tests.
+# pylint: disable=redefined-outer-name
+
 import pytest  # pylint: disable=import-error
-from detector import AnimalDetector  # pylint: disable=import-error
+from animal_detector import AnimalDetector  # pylint: disable=import-error
 
 
 class DummyProcessor:  # pylint: disable=too-few-public-methods
@@ -63,4 +66,5 @@ def test_parse_response_negative(dummy_detector):
     result = dummy_detector.parse_response(response)
     assert result["animal_or_not"] == 0
     assert result["type"] == ""
+    
     
