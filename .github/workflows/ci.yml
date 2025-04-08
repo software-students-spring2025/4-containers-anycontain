@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - main
+      - zifan 
   pull_request:
     branches:
       - main
+      - zifan
 
 jobs:
   build_and_test:
