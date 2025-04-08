@@ -46,4 +46,3 @@ def test_main_no_image(monkeypatch, tmp_path):
     output = captured_output.getvalue()
     # The output should indicate that the sample image was not found.
     assert "Sample image" in output  
-    
