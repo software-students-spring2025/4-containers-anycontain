@@ -57,6 +57,7 @@ def test_parse_response_positive(dummy_detector):
     assert result["type"].lower() == "giraffe"
     assert "giraffe" in result["text_description"].lower()
 
+
 def test_parse_response_negative(dummy_detector):
     """
     Test parse_response with a negative animal detection response.
@@ -65,4 +66,3 @@ def test_parse_response_negative(dummy_detector):
     result = dummy_detector.parse_response(response)
     assert result["animal_or_not"] == 0
     assert result["type"] == ""
-    
