@@ -1,6 +1,10 @@
 import cv2
 import torch
-from transformers import BitsAndBytesConfig, LlavaNextVideoForConditionalGeneration, LlavaNextVideoProcessor
+from transformers import (
+    BitsAndBytesConfig,
+    LlavaNextVideoForConditionalGeneration,
+    LlavaNextVideoProcessor,
+)
 
 
 class AnimalDetector:
@@ -9,8 +13,7 @@ class AnimalDetector:
     def __init__(self):
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.quantization_config = BitsAndBytesConfig(
-            load_in_4bit=True,
-            bnb_4bit_compute_dtype=torch.float16
+            load_in_4bit=True, bnb_4bit_compute_dtype=torch.float16
         )
 
         self.processor = LlavaNextVideoProcessor.from_pretrained(
@@ -19,7 +22,7 @@ class AnimalDetector:
         self.model = LlavaNextVideoForConditionalGeneration.from_pretrained(
             "llava-hf/LLaVA-NeXT-Video-7B-hf",
             quantization_config=self.quantization_config,
-            device_map="auto"
+            device_map="auto",
         )
 
     def detect(self, image_path: str) -> dict:
@@ -38,7 +41,9 @@ class AnimalDetector:
         inputs = self.processor(images=[image_rgb], return_tensors="pt")
         with torch.no_grad():
             outputs = self.model.generate(**inputs)
-        response_text = self.processor.batch_decode(outputs, skip_special_tokens=True)[0]
+        response_text = self.processor.batch_decode(outputs, skip_special_tokens=True)[
+            0
+        ]
 
         result = self.parse_response(response_text)
         return result
@@ -72,5 +77,5 @@ class AnimalDetector:
         return {
             "animal_or_not": animal_or_not,
             "type": animal_type,
-            "text_description": text_description
+            "text_description": text_description,
         }

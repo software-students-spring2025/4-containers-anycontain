@@ -1,12 +1,12 @@
 import sys
-from database import store_image, update_classification   
+from database import store_image, update_classification
 
 
 from detector import AnimalDetector
 
 
 def main():
-    image_path = "sample.jpg" 
+    image_path = "sample.jpg"
 
     try:
         with open(image_path, "rb") as f:
@@ -20,7 +20,7 @@ def main():
         animal_or_not=0,
         image_type="",
         text_description="Raw image",
-        env_file="x.env"
+        env_file="x.env",
     )
     print(f"Stored image with id: {inserted_id}")
 
@@ -38,7 +38,7 @@ def main():
         animal_or_not=result["animal_or_not"],
         image_type=result["type"],
         text_description=result["text_description"],
-        env_file="x.env"
+        env_file="x.env",
     )
     print(f"Updated {updated_count} document(s) with classification result.")
 
