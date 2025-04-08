@@ -30,7 +30,7 @@ class DummyModel:  # pylint: disable=too-few-public-methods
 
 
 @pytest.fixture
-def detector(monkeypatch):
+def dummy_detector():
     """
     Fixture to provide an AnimalDetector instance with dummy processor and model.
     """
@@ -40,7 +40,7 @@ def detector(monkeypatch):
     return instance
 
 
-def test_parse_response_positive(detector):
+def test_parse_response_positive(dummy_detector):
     """
     Test parse_response with a positive animal detection response.
     """
@@ -48,18 +48,19 @@ def test_parse_response_positive(detector):
         "Animal Detected: Yes. Type: Giraffe. "
         "Description: A giraffe is seen on the savannah."
     )
-    result = detector.parse_response(response)
+    result = dummy_detector.parse_response(response)
     assert result["animal_or_not"] == 1
     # Compare in lowercase to avoid capitalization differences.
     assert result["type"].lower() == "giraffe"
     assert "giraffe" in result["text_description"].lower()
 
 
-def test_parse_response_negative(detector):
+def test_parse_response_negative(dummy_detector):
     """
     Test parse_response with a negative animal detection response.
     """
     response = "No animal detected in the image."
-    result = detector.parse_response(response)
+    result = dummy_detector.parse_response(response)
     assert result["animal_or_not"] == 0
     assert result["type"] == ""
+    
