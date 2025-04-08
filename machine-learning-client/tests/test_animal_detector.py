@@ -6,17 +6,14 @@ import pytest  # pylint: disable=import-error
 from animal_detector import AnimalDetector  # pylint: disable=import-error
 
 
-class DummyProcessor:
+class DummyProcessor:  # pylint: disable=too-few-public-methods
     """Dummy processor to simulate model processing for tests."""
-
-    def __init__(self):
-        pass
 
     def __call__(self, images, return_tensors):
         """Simulate processing of images."""
         return {"dummy": "tensor"}
 
-    def batch_decode(self, outputs, skip_special_tokens):
+    def batch_decode(self, _outputs, _skip_special_tokens):
         """Simulate decoding of model outputs."""
         return [
             "Animal Detected: Yes. Type: Elephant. "
@@ -24,27 +21,26 @@ class DummyProcessor:
         ]
 
 
-class DummyModel:
+class DummyModel:  # pylint: disable=too-few-public-methods
     """Dummy model that simulates output generation for tests."""
 
-    def generate(self, **kwargs):  # pylint: disable=unused-argument
+    def generate(self, **_kwargs):
         """Simulate model output generation."""
         return "dummy_output"
 
 
 @pytest.fixture
-def animal_detector_fixture(monkeypatch):
+def detector(monkeypatch):
     """
-    Fixture for providing an AnimalDetector instance with
-    dummy processor and model.
+    Fixture to provide an AnimalDetector instance with dummy processor and model.
     """
-    detector = AnimalDetector()
-    detector.processor = DummyProcessor()
-    detector.model = DummyModel()
-    return detector
+    instance = AnimalDetector()
+    instance.processor = DummyProcessor()
+    instance.model = DummyModel()
+    return instance
 
 
-def test_parse_response_positive(animal_detector_fixture):
+def test_parse_response_positive(detector):
     """
     Test parse_response with a positive animal detection response.
     """
@@ -52,18 +48,18 @@ def test_parse_response_positive(animal_detector_fixture):
         "Animal Detected: Yes. Type: Giraffe. "
         "Description: A giraffe is seen on the savannah."
     )
-    result = animal_detector_fixture.parse_response(response)
+    result = detector.parse_response(response)
     assert result["animal_or_not"] == 1
     # Compare in lowercase to avoid capitalization differences.
     assert result["type"].lower() == "giraffe"
     assert "giraffe" in result["text_description"].lower()
 
 
-def test_parse_response_negative(animal_detector_fixture):
+def test_parse_response_negative(detector):
     """
     Test parse_response with a negative animal detection response.
     """
     response = "No animal detected in the image."
-    result = animal_detector_fixture.parse_response(response)
+    result = detector.parse_response(response)
     assert result["animal_or_not"] == 0
     assert result["type"] == ""
