@@ -6,8 +6,16 @@ name = "pypi"
 [packages]
 pylint = "*"
 black = "*"
+torch = "*"
+transformers = "*"
+opencv-python = "*"
+python-dotenv = "*"
+pymongo = "*"
+bitsandbytes = "*"
 
 [dev-packages]
+pytest = "*"
+pytest-cov = "*"
 
 [requires]
 python_version = "3.10"
