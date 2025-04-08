@@ -66,5 +66,3 @@ def test_parse_response_negative(dummy_detector):
     result = dummy_detector.parse_response(response)
     assert result["animal_or_not"] == 0
     assert result["type"] == ""
-    
-    
