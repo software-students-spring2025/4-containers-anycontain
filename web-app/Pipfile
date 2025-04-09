@@ -3,17 +3,30 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
+[requires]
+python_version = "3.11"
+
 [packages]
-pymongo = {extras = ["srv"], version = "*"}
+# web-app backend
 flask = "*"
-python-dotenv = "*"
 flask-cors = "*"
+python-dotenv = "*"
+pymongo = {extras = ["srv"], version = "*"}
+
+# machine-learning-client
+torch = "*"
+numpy = "*"
+transformers = "*"
+opencv-python = "*"
+bitsandbytes = "*"
+pillow = "*"
+protobuf = "*"
+sentencepiece = "*"
+accelerate = "*"
 
 [dev-packages]
 pylint = "*"
 black = "*"
 pytest = "*"
 pytest-flask = "*"
-
-[requires]
-python_version = "3.10"
+pytest-cov = "*"
