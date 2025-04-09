@@ -35,5 +35,4 @@ jobs:
 
       - name: Run Tests in ${{ matrix.subdir }}
         run: |
-          cd ${{ matrix.subdir }}
-          pipenv run pytest --maxfail=1 --disable-warnings -q
+          pytest machine_learning_client/tests/
