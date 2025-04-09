@@ -9,7 +9,6 @@ from dotenv import load_dotenv
 def store_image(
     binary_data, animal_or_not=0, image_type="", text_description="", env_file="x.env"
 ):
-
     load_dotenv(env_file)
     connection_string = os.environ.get("MONGODB_URI")
 
@@ -30,7 +29,6 @@ def store_image(
 
 
 def fetch_all_pictures(env_file="x.env"):
-
     load_dotenv(env_file)
     connection_string = os.environ.get("MONGODB_URI")
 
@@ -51,7 +49,6 @@ def fetch_all_pictures(env_file="x.env"):
 
 
 def download_images(images, output_dir="example_fetched_picture"):
-
     os.makedirs(output_dir, exist_ok=True)
 
     for idx, image in enumerate(images):
@@ -61,7 +58,6 @@ def download_images(images, output_dir="example_fetched_picture"):
 
 
 def fetch_id_and_image_data(env_file="x.env"):
-
     load_dotenv(env_file)
     connection_string = os.environ.get("MONGODB_URI")
 
@@ -80,7 +76,6 @@ def fetch_id_and_image_data(env_file="x.env"):
 def update_classification(
     document_id, animal_or_not, image_type, text_description, env_file="x.env"
 ):
-
     load_dotenv(env_file)
     connection_string = os.environ.get("MONGODB_URI")
 

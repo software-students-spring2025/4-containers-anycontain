@@ -67,7 +67,7 @@ def main():
         except Exception as e:
             print(f"Error during local detection: {e}", file=sys.stderr)
             return
-
+          
     updated_count = update_classification(
         inserted_id,
         animal_or_not=result["animal_or_not"],
