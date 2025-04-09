@@ -9,8 +9,6 @@ This project implements a machine learning client that detects the presence and 
 
 ## Environment Setup
 
-This project is managed with [Pipenv](https://pipenv.pypa.io/en/latest/). It includes both runtime dependencies and development tools (like `pytest`, `black`, and `pylint`).
-
 ### Prerequisites
 
 - **Python 3.11** installed on your system.
