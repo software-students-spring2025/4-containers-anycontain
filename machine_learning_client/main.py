@@ -1,17 +1,19 @@
 import sys
-
 from machine_learning_client.database import store_image, update_classification
 from machine_learning_client.detector import AnimalDetector
 
 
 def main():
-    image_path = "sample.png"
+    if len(sys.argv) > 1:
+        image_path = sys.argv[1]
+    else:
+        image_path = "sample.png"
 
     try:
         with open(image_path, "rb") as f:
             image_bytes = f.read()
     except FileNotFoundError:
-        print(f"Sample image '{image_path}' not found.", file=sys.stderr)
+        print(f"Image '{image_path}' not found.", file=sys.stderr)
         return
 
     inserted_id = store_image(

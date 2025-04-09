@@ -28,11 +28,11 @@ jobs:
 
       - name: Install dependencies in ${{ matrix.subdir }}
         run: |
-          cd ${{ matrix.subdir }}
+          cd machine_learning_client
           python -m pip install --upgrade pip
           pip install pipenv
           pipenv install --system --dev
-
+          
       - name: Run Tests in ${{ matrix.subdir }}
         run: |
           pip install pytest
