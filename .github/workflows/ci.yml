@@ -26,12 +26,18 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
+      - name: Check Python version
+        run: |
+          python --version
+          which python
+          echo $PATH
+
       - name: Install dependencies in ${{ matrix.subdir }}
         run: |
           cd ${{ matrix.subdir }}
           python -m pip install --upgrade pip
           pip install pipenv
-          pipenv install --dev  # This installs all dependencies including dev
+          pipenv install --dev 
 
       - name: Run Tests
         run: |
