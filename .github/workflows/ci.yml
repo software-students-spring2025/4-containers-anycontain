@@ -35,5 +35,5 @@ jobs:
           
       - name: Run Tests in ${{ matrix.subdir }}
         run: |
-          pip install pytest numpy
+          pip install pipenv
           pytest machine_learning_client/tests/
