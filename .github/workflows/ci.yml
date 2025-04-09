@@ -30,9 +30,7 @@ jobs:
         run: |
           cd ${{ matrix.subdir }}
           python -m pip install --upgrade pip
-          # Install pipenv if you're using it for dependency management.
           pip install pipenv
-          # Install runtime and development dependencies as specified in your Pipfile.
           pipenv install --system --dev
 
       - name: Run Tests in ${{ matrix.subdir }}
