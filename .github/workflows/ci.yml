@@ -1,10 +1,10 @@
-name: Python Package CI
+name: Python CI
 
 on:
   push:
     branches:
       - main
-      - zifan 
+      - zifan
   pull_request:
     branches:
       - main
@@ -15,8 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.10", "3.12"]
-        subdir: [ "machine-learning-client" ]
+        python-version: ["3.11", "3.12"]
+        subdir: ["machine-learning-client"]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -32,13 +32,8 @@ jobs:
           python -m pip install --upgrade pip
           # Install pipenv if you're using it for dependency management.
           pip install pipenv
-          # This installs all runtime and dev dependencies as specified in your Pipfile.
+          # Install runtime and development dependencies as specified in your Pipfile.
           pipenv install --system --dev
-
-      - name: Build package in ${{ matrix.subdir }}
-        run: |
-          cd ${{ matrix.subdir }}
-          pip install .
 
       - name: Run Tests in ${{ matrix.subdir }}
         run: |
