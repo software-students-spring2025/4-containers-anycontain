@@ -38,4 +38,4 @@ jobs:
       - name: Run Tests in ${{ matrix.subdir }}
         run: |
           cd ${{ matrix.subdir }}
-          pytest --maxfail=1 --disable-warnings -q
+          pipenv run pytest --maxfail=1 --disable-warnings -q
