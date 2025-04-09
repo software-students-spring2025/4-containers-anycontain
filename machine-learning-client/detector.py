@@ -41,7 +41,7 @@ class AnimalDetector:
             {
                 "role": "user",
                 "content": [
-                    {"type": "text", "text": "What is this animal?"},
+                    {"type": "text", "text": "What is this animal? If there is no animal in the picture, just answer no animal"},
                     {"type": "image"},
                 ],
             },
