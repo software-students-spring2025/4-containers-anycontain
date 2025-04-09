@@ -91,7 +91,7 @@ def update_classification(
         "animal_or_not": animal_or_not,
         "type": image_type,
         "text_description": text_description,
-        "processed": processed,  # update the processed flag
+        "processed": True,  # update the processed flag
     }
     result = db.pictures.update_one({"_id": document_id}, {"$set": update_fields})
 
