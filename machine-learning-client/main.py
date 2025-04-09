@@ -1,4 +1,5 @@
 import sys
+
 from database import store_image, update_classification
 
 
@@ -6,7 +7,7 @@ from detector import AnimalDetector
 
 
 def main():
-    image_path = "sample.jpg"
+    image_path = "sample.png"
 
     try:
         with open(image_path, "rb") as f:

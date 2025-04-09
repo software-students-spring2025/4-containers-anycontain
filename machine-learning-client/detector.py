@@ -12,16 +12,15 @@ class AnimalDetector:
 
     def __init__(self):
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
-        self.quantization_config = BitsAndBytesConfig(
-            load_in_4bit=True, bnb_4bit_compute_dtype=torch.float16
-        )
+        # self.quantization_config = BitsAndBytesConfig(
+        #     load_in_4bit=True, bnb_4bit_compute_dtype=torch.float16
+        # )
 
         self.processor = LlavaNextVideoProcessor.from_pretrained(
             "llava-hf/LLaVA-NeXT-Video-7B-hf"
         )
         self.model = LlavaNextVideoForConditionalGeneration.from_pretrained(
             "llava-hf/LLaVA-NeXT-Video-7B-hf",
-            quantization_config=self.quantization_config,
             device_map="auto",
         )
 
