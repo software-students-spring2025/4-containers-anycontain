@@ -30,10 +30,7 @@ def dummy_detector():
 
 
 def test_parse_response_positive(dummy_detector):
-
-    response = (
-        "Animal Detected: Yes. Type: Giraffe. Description: A giraffe is seen on the savannah."
-    )
+    response = "Animal Detected: Yes. Type: Giraffe. Description: A giraffe is seen on the savannah."
     result = dummy_detector.parse_response(response)
     assert result["animal_or_not"] == 1
     assert result["type"].lower() == "giraffe"
@@ -41,7 +38,6 @@ def test_parse_response_positive(dummy_detector):
 
 
 def test_parse_response_negative(dummy_detector):
-
     response = "No animal detected in the image."
     result = dummy_detector.parse_response(response)
     assert result["animal_or_not"] == 0
