@@ -5,7 +5,6 @@ from machine_learning_client.database import store_image, update_classification
 from machine_learning_client.detector import AnimalDetector
 from openai import OpenAI
 
-client = OpenAI()
 
 def encode_image(image_path):
     with open(image_path, "rb") as image_file:
@@ -14,6 +13,7 @@ def encode_image(image_path):
 
 def detect_with_openai(image_path):
     base64_image = encode_image(image_path)
+    client = OpenAI()
     response = client.chat.completions.create(
         model="gpt-4o",
         messages=[
