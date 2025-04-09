@@ -15,6 +15,7 @@ from machine_learning_client.detector import AnimalDetector
 
 routes = Blueprint("routes", __name__)
 
+
 def _validate_upload_file(file_obj):
     """
     Validate the uploaded file.
@@ -28,6 +29,7 @@ def _validate_upload_file(file_obj):
     if not file_obj or file_obj.filename == "":
         return False
     return True
+
 
 @routes.route("/upload", methods=["POST"])
 def upload_image():
@@ -77,9 +79,11 @@ def upload_image():
         env_file="x.env",
     )
 
-    return jsonify({
-        "id": str(inserted_id),
-        "animal_or_not": result["animal_or_not"],
-        "type": result["type"],
-        "text_description": result["text_description"]
-    })
+    return jsonify(
+        {
+            "id": str(inserted_id),
+            "animal_or_not": result["animal_or_not"],
+            "type": result["type"],
+            "text_description": result["text_description"],
+        }
+    )
