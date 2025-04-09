@@ -26,8 +26,7 @@ class AnimalDetector:
 
     def detect(self, image_path: str) -> dict:
         """
-        Detect animal presence and type in the given image.
-        :param image_path: Path to the image file.
+        :param image_path: Path to the image file. TODO: should be integrated from web app
         :return: Dictionary containing detection results with keys:
                  'animal_or_not', 'type', 'text_description'
         """
@@ -67,7 +66,6 @@ class AnimalDetector:
     @staticmethod
     def parse_response(response: str) -> dict:
         """
-        Parse the raw model response into structured detection results.
         :param response: The raw text returned by the model.
         :return: A dictionary with keys 'animal_or_not', 'type', and 'text_description'.
         """
