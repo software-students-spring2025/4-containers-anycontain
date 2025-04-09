@@ -21,7 +21,7 @@ This project is managed with [Pipenv](https://pipenv.pypa.io/en/latest/). It inc
 1. **Clone the Repository:**
 
    ```bash
-   git clone <https://github.com/software-students-spring2025/4-containers-anycontain>
+   git clone <https://github.com/software-students-spring2025/4-containers-anycontain.git>
    cd <4-containers-anycontain>
    ```
 
@@ -33,9 +33,9 @@ This project is managed with [Pipenv](https://pipenv.pypa.io/en/latest/). It inc
 
 ## Example Usage
 ### To run with the default sample image:
-    pipenv run python machine_learning_client/main.py
+    python machine_learning_client/main.py
 
 ### To run with a custom image:
-    pipenv run python machine_learning_client/main.py path/to/your_image.png
+    python machine_learning_client/main.py path/to/your_image.png
 
 Build a containerized app that uses machine learning. See [instructions](./instructions.md) for details.
