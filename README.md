@@ -2,6 +2,7 @@
 [![Python CI](https://github.com/software-students-spring2025/4-containers-anycontain/actions/workflows/ci.yml/badge.svg)](https://github.com/software-students-spring2025/4-containers-anycontain/actions/workflows/ci.yml)
 # Containerized App Exercise
 
+![Project Icon](/images/icon.png)
 # Animal Detection for Wildlife Protection
 
 This project implements a machine learning client that detects the presence and type of animals in images for wild life protection. It collects images, analyzes them using a finetuned LLaVA-based model, and then stores the raw image data and detection metadata into a MongoDB database. 
@@ -36,6 +37,6 @@ This project is managed with [Pipenv](https://pipenv.pypa.io/en/latest/). It inc
     python machine_learning_client/main.py
 
 ### To run with a custom image:
-    python machine_learning_client/main.py path/to/your_image.png
+    python machine_learning_client/main.py images/sample.png
 
 Build a containerized app that uses machine learning. See [instructions](./instructions.md) for details.
