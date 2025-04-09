@@ -19,7 +19,7 @@ const ResultDisplay = ({ data }) => {
   return (
     <Card title="Recognition Result">
       <Table
-        dataSource={data.map((item, index) => ({ ...item, key: index }))}
+        dataSource={data.results.map((item, index) => ({ ...item, key: index }))}
         columns={columns}
         pagination={false}
       />
