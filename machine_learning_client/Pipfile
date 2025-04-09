@@ -17,6 +17,7 @@ pillow = "*"
 protobuf = "*"
 sentencepiece = "*"
 accelerate = "*"
+openai = "*"
 
 [dev-packages]
 pytest = "*"
