@@ -2,7 +2,7 @@ import pytest
 from machine_learning_client.detector import AnimalDetector
 
 
-class DummyProcessor:   
+class DummyProcessor:
     """Dummy processor to simulate model processing for tests."""
 
     def __call__(self, images, return_tensors):
@@ -12,12 +12,11 @@ class DummyProcessor:
     def batch_decode(self, _outputs, _skip_special_tokens):
         """Simulate decoding of model outputs."""
         return [
-            "Animal Detected: Yes. Type: Elephant. "
-            "Description: Detected an elephant in the image."
+            "Animal Detected: Yes. Type: Elephant. Description: Detected an elephant in the image."
         ]
 
 
-class DummyModel:  
+class DummyModel:
     """Dummy model that simulates output generation for tests."""
 
     def generate(self, **_kwargs):
@@ -41,8 +40,7 @@ def test_parse_response_positive(dummy_detector):
     Test parse_response with a positive animal detection response.
     """
     response = (
-        "Animal Detected: Yes. Type: Giraffe. "
-        "Description: A giraffe is seen on the savannah."
+        "Animal Detected: Yes. Type: Giraffe. Description: A giraffe is seen on the savannah."
     )
     result = dummy_detector.parse_response(response)
     assert result["animal_or_not"] == 1
