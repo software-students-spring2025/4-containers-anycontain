@@ -21,6 +21,7 @@ accelerate = "*"
 [dev-packages]
 pytest = "*"
 numpy = "*"
+opencv-python = "*"
 pytest-cov = "*"
 
 [requires]
