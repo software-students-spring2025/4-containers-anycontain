@@ -12,10 +12,14 @@ opencv-python = "*"
 python-dotenv = "*"
 pymongo = "*"
 bitsandbytes = "*"
+pillow = "*"
+protobuf = "*"
+sentencepiece = "*"
+accelerate = "*"
 
 [dev-packages]
 pytest = "*"
 pytest-cov = "*"
 
 [requires]
-python_version = "3.10"
+python_version = "3.11"
