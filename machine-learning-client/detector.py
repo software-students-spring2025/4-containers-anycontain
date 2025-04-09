@@ -36,18 +36,20 @@ class AnimalDetector:
             raise ValueError("Unable to read image from the given path.")
 
         image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        
+
         conversation = [
-        {
-            "role": "user",
-            "content": [
-                {"type": "text", "text": "What is this animal?"},
-                {"type": "image"},
+            {
+                "role": "user",
+                "content": [
+                    {"type": "text", "text": "What is this animal?"},
+                    {"type": "image"},
                 ],
-        },]
-        
-        prompt = self.processor.apply_chat_template(conversation, add_generation_prompt=True)
-        
+            },
+        ]
+
+        prompt = self.processor.apply_chat_template(
+            conversation, add_generation_prompt=True
+        )
 
         inputs = self.processor(text=[prompt], images=[image_rgb], return_tensors="pt")
         with torch.no_grad():
