@@ -34,7 +34,6 @@ def main():
 
     print("Detection result:", result)
 
-    
     # TODO: This should also update at the interface of web app
     updated_count = update_classification(
         inserted_id,
@@ -44,8 +43,6 @@ def main():
         env_file="x.env",
     )
     print(f"Updated {updated_count} document(s) with classification result.")
-    
-    
 
 
 if __name__ == "__main__":
