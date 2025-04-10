@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.11", "3.12"]
-        subdir: ["machine_learning_client"]
+        subdir: ["machine_learning_client","web-app"]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
