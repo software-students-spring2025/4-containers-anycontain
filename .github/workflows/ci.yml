@@ -41,5 +41,6 @@ jobs:
 
       - name: Run Tests
         run: |
+          export FORCE_CPU=1
           cd ${{ matrix.subdir }}
           pipenv run pytest --maxfail=1 --disable-warnings -q
