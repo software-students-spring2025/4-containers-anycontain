@@ -76,30 +76,32 @@ This project implements a itegrated system with a website interface and machine 
    http://localhost:3000
    ```
 
-## Getting Started with Docker Compose
+# Getting Started with Docker Compose
 
 1. **Place the provided `.env` file**  
-   Please contact the Anycontain team to get the `x.env` file. Move the `x.env` file you received into the project root (the same directory as `docker-compose.yml`), `/web-app` and '/machine_learning_client'.
+   Please contact the Anycontain team to get the `.env` file. Move the `.env` file you received into the project root (the same directory as `docker-compose.yml`).
 
-2. **Launch all services**  
-    Note the build might take around 6 minutes
+2. **Build and launch all services**  
+   Note the build might take around 6 minutes  
+   First, build the containers:
    ```bash
-   docker compose up --build
+   docker compose build
+   ```
+   Then, start the services:
+   ```bash
+   docker compose up
    ```
 
 3. **Access the dashboard**  
    Open your browser and go to:  
-   ```text
+   ```
    http://localhost
    ```
-   You can also use
+
+4. **Stop the stack**
    ```bash
-   curl -F "file=@path_to_sensor_image.jpg" http://localhost:5114/upload
+   docker compose down
    ```
 
-4. **Stop the stack**  
-   ```bash
-   docker-compose down
-   ```
 
 Build a containerized app that uses machine learning. See [instructions](./instructions.md) for details.
