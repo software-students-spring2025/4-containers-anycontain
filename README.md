@@ -5,7 +5,20 @@
 ![Project Icon](/images/icon.png)
 # Animal Detection for Wildlife Protection
 
-This project implements a machine learning client that detects the presence and type of animals in images for wild life protection. It collects images, analyzes them using a finetuned LLaVA-based model, and then stores the raw image data and detection metadata into a MongoDB database. 
+This project implements a itegrated system with a website interface and machine learning client that detects the presence and type of animals in images for wild life protection. The ML client get the images input of user from the web app, analyzes them using a finetuned LLaVA-based model or call gpt api, stores the raw image data and detection metadata into a MongoDB database, and then the web app will read the result and display it. 
+
+
+## Team members (In Alphabetical Order)
+
+
+
+[**Allen Ni**](https://github.com/AllenNi66/)  
+
+[**Jason Lin**](https://github.com/JasonLIN0226/) 
+
+[**Hans Yin**](https://github.com/Hans-Yin/)
+
+[**Zifan Zhao**](https://github.com/Exiam6/)
 
 ## Environment Setup
 
