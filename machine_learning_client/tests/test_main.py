@@ -38,21 +38,6 @@ def dummy_detector(monkeypatch):
     monkeypatch.setattr(main, "AnimalDetector", DummyDetector)
 
 
-# def test_main_with_local_model(monkeypatch, tmp_path, capsys, dummy_detector):
-#     monkeypatch.chdir(tmp_path)
-#     test_image = tmp_path / "test.png"
-#     test_image.write_bytes(b"dummy image content")
-
-#     monkeypatch.setattr(sys, "argv", ["main.py", str(test_image)])
-
-#     main.main()
-
-#     captured = capsys.readouterr().out
-
-#     assert "Stored image with id: dummy_id" in captured
-#     assert "Local model detection result:" in captured
-#     assert "Updated 1 document(s)" in captured
-
 
 def test_main_with_openai(monkeypatch, tmp_path, capsys, dummy_detector):
     monkeypatch.chdir(tmp_path)

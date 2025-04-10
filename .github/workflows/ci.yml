@@ -6,11 +6,13 @@ on:
       - main
       - zifan
       - new_main
+
   pull_request:
     branches:
       - main
       - zifan
       - new_main
+
 
 jobs:
   build_and_test:
@@ -19,6 +21,7 @@ jobs:
       matrix:
         python-version: ["3.11", "3.12"]
         subdir: ["machine_learning_client","web-app"]
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
