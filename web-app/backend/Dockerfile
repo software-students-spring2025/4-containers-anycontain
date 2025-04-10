@@ -16,6 +16,7 @@ RUN pip install --upgrade pip setuptools wheel \
  && pipenv install --deploy --system
 
 RUN pip install flask-cors
+RUN pip install openai
 # 3) copy ML client library if you’re mounting it (or bake it in)
 #    COPY machine_learning_client /app/machine_learning_client
 
