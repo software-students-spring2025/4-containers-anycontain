@@ -90,4 +90,3 @@ def upload_image():
             "text_description": result["text_description"],
         }
     )
-    
