@@ -4,11 +4,13 @@ import torch
 import base64
 from transformers import LlavaNextVideoProcessor, LlavaNextVideoForConditionalGeneration
 from openai import OpenAI
+from dotenv import load_dotenv
 
 class AnimalDetector:
     """Class to perform animal detection analysis using either local LLaVA-based model or OpenAI GPT-4o."""
 
     def __init__(self, use_openai=False):
+        load_dotenv(os.path.join(os.path.dirname(__file__), '/app/machine_learning_client/x.env'), override=True)
         self.use_openai = use_openai
 
         if not self.use_openai:

@@ -20,7 +20,8 @@ This project implements a itegrated system with a website interface and machine 
 
 [**Zifan Zhao**](https://github.com/Exiam6/)
 
-## Environment Setup
+
+## (Optioanl) Environment Setup for usage outside docker
 
 ### Prerequisites
 
@@ -42,7 +43,7 @@ This project implements a itegrated system with a website interface and machine 
    pipenv install --dev
    ```
 
-## Example Usage
+
 ### To run with the default sample image:
     python machine_learning_client/main.py
 
@@ -72,7 +73,7 @@ This project implements a itegrated system with a website interface and machine 
 4. Visit the frontend in your browser:
 
    ```text
-   http://localhost:3000
+   http://localhost 
    ```
 
 ## Getting Started with Docker Compose
@@ -89,7 +90,7 @@ This project implements a itegrated system with a website interface and machine 
 3. **Access the dashboard**  
    Open your browser and go to:  
    ```text
-   http://localhost
+   http://localhost:3000
    ```
    You can also use
    ```bash
