@@ -40,9 +40,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install pipenv
           pipenv install --dev --python $(which python)
+      
+      - name: Export OPENAI_API_KEY
+        run: echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> $GITHUB_ENV
 
       - name: Run Tests
         run: |
-          export FORCE_CPU=1
           cd ${{ matrix.subdir }}
           pipenv run pytest --maxfail=1 --disable-warnings -q
+
