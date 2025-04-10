@@ -19,7 +19,7 @@ const ImageUpload = ({ setLoading, setResult, setImageUrl }) => {
       const formData = new FormData();
       formData.append('file', file);
 
-      fetch(`${process.env.REACT_APP_API_URL}/upload`, {
+      fetch('http://localhost:5114/upload', {
         method: 'POST',
         body: formData,
       })

@@ -1,15 +1,6 @@
 """Entry point to run the Flask backend app."""
-from flask import Flask
-from flask_cors import CORS
 import sys
-
-
-
-def create_app():
-    app = Flask(__name__)
-    CORS(app)  # <- This is important if frontend and backend aren't served from same origin
-    ...
-    return app
+from app import create_app
 
 app = create_app()
 
