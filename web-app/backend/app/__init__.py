@@ -15,6 +15,6 @@ def create_app():
         Flask: The configured Flask application.
     """
     app = Flask(__name__)
-    CORS(app)
+    CORS(app, origins=["http://localhost:3000"])
     app.register_blueprint(routes)
     return app
