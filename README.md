@@ -79,7 +79,7 @@ This project implements a itegrated system with a website interface and machine 
 ## Getting Started with Docker Compose
 
 1. **Place the provided `.env` file**  
-   Please contact the Anycontain team to get the `x.env` file. Move the `x.env` file you received into the project root (the same directory as `docker-compose.yml`), `/web-app` and '/machine_learning_client'.
+   Please contact the Anycontain team to get the `x.env` file. Move the `x.env` file you received into the project root (the same directory as `docker-compose.yml`), `/web-app` and `/machine_learning_client` .
 
 2. **Launch all services**  
     Note the build might take around 6 minutes
