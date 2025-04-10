@@ -10,8 +10,8 @@ def store_image(
     binary_data, animal_or_not=0, image_type="", text_description="", env_file="x.env"
 ):
     load_dotenv(env_file)
-    connection_string = os.environ.get("MONGODB_URI")
-
+    connection_string = 'mongodb+srv://by2179:hansy666@cluster0.mkz5hkh.mongodb.net/AnimalDetector?retryWrites=true&w=majority' #os.environ.get("MONGODB_URI")
+    
     client = MongoClient(connection_string)
     db = client.get_database("AnimalDetector")
 
@@ -30,7 +30,8 @@ def store_image(
 
 def fetch_all_pictures(env_file="x.env"):
     load_dotenv(env_file)
-    connection_string = os.environ.get("MONGODB_URI")
+    connection_string = 'mongodb+srv://by2179:hansy666@cluster0.mkz5hkh.mongodb.net/AnimalDetector?retryWrites=true&w=majority' #os.environ.get("MONGODB_URI")
+    
 
     client = MongoClient(connection_string)
     db = client.get_database("AnimalDetector")
@@ -59,7 +60,8 @@ def download_images(images, output_dir="example_fetched_picture"):
 
 def fetch_id_and_image_data(env_file="x.env"):
     load_dotenv(env_file)
-    connection_string = os.environ.get("MONGODB_URI")
+    connection_string = 'mongodb+srv://by2179:hansy666@cluster0.mkz5hkh.mongodb.net/AnimalDetector?retryWrites=true&w=majority' #os.environ.get("MONGODB_URI")
+    
 
     client = MongoClient(connection_string)
     db = client.get_database("AnimalDetector")
@@ -77,7 +79,8 @@ def update_classification(
     document_id, animal_or_not, image_type, text_description, env_file="x.env"
 ):
     load_dotenv(env_file)
-    connection_string = os.environ.get("MONGODB_URI")
+    connection_string = 'mongodb+srv://by2179:hansy666@cluster0.mkz5hkh.mongodb.net/AnimalDetector?retryWrites=true&w=majority' #os.environ.get("MONGODB_URI")
+    
 
     client = MongoClient(connection_string)
     db = client.get_database("AnimalDetector")

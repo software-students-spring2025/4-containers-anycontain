@@ -5,10 +5,12 @@ on:
     branches:
       - main
       - zifan
+      - real_working_docker
   pull_request:
     branches:
       - main
       - zifan
+      - real_working_docker
 
 jobs:
   build_and_test:
