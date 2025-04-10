@@ -40,6 +40,7 @@ def upload_image():
     Returns:
         A JSON response with the detection result, or an error message.
     """
+    print("Reading File")
     if "file" not in request.files:
         return jsonify({"error": "No file part"}), 400
 
@@ -48,7 +49,7 @@ def upload_image():
         return jsonify({"error": "No selected file"}), 400
 
     file_bytes = file.read()
-
+    print("File Read")
     if not file_bytes:
         return jsonify({"error": "Uploaded file is empty"}), 400
 
@@ -68,8 +69,10 @@ def upload_image():
 
     # Create an instance of the detector and run detection
     detector = AnimalDetector(use_openai=True)
+    print("Sending data into Detector")
     try:
         result = detector.detect(tmp_path)
+        print(result)
     except Exception as e:  # pylint: disable=broad-exception-caught
         return jsonify({"error": f"detection failed: {str(e)}"}), 500
 
