@@ -101,17 +101,3 @@ def _id_repr(_id):
 
 
 
-# Sample for store_image
-# if __name__ == "__main__":
-#     with open("sample1.jpg", "rb") as image_file:
-#         binary_data = image_file.read()
-    
-#     inserted_id = store_image(binary_data)
-#     print("Inserted document with id:", inserted_id)
-
-
-# Sample for fetch_all_pictures
-# if __name__ == "__main__":
-#     images = fetch_all_pictures("x.env")
-#     print(f"Fetched {len(images)} images.")
-#     download_images(images, output_dir="example_fetched_picture")
