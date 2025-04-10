@@ -1,5 +1,6 @@
 import sys
 import os
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import io
@@ -7,12 +8,14 @@ import pytest
 from flask import Flask
 from app import create_app
 
+
 @pytest.fixture
 def client():
     app = create_app()
-    app.config['TESTING'] = True
+    app.config["TESTING"] = True
     with app.test_client() as client:
         yield client
+
 
 def test_upload_valid_image(client):
     dummy_image = io.BytesIO(b"fake image data")
@@ -55,4 +58,3 @@ def test_upload_unsupported_format(client):
     )
     assert response.status_code in [200, 500]
     assert isinstance(response.get_json(), dict)
-
