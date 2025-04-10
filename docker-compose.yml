@@ -1,0 +1,37 @@
+services:
+  ml_client:
+    build:
+      context: ./machine_learning_client
+      dockerfile: Dockerfile
+    image: ml_client:latest
+    env_file:
+      - ./machine_learning_client/x.env
+    volumes:
+      - ./images:/app/images
+
+  web_backend:
+    build:
+      context: ./web-app
+      dockerfile: backend/Dockerfile
+    image: web_backend:latest
+    env_file:
+      - ./web-app/x.env
+    depends_on:
+      - ml_client
+    volumes:
+      - ./machine_learning_client:/app/machine_learning_client
+      - ./images:/app/images
+    ports:
+      - "5000:5111"
+
+  web_frontend:
+    build:
+      context: ./web-app/frontend       # ← point here
+      dockerfile: Dockerfile
+      args:
+        REACT_APP_API_URL: http://web_backend:5000
+    image: web_frontend:latest
+    depends_on:
+      - web_backend
+    ports:
+      - "80:80"

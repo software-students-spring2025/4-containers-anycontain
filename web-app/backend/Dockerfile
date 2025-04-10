@@ -15,6 +15,7 @@ RUN pip install --upgrade pip setuptools wheel \
  && pip install --no-cache-dir pipenv \
  && pipenv install --deploy --system
 
+RUN pip install flask-cors
 # 3) copy ML client library if you’re mounting it (or bake it in)
 #    COPY machine_learning_client /app/machine_learning_client
 
