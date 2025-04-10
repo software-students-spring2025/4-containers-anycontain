@@ -8,6 +8,7 @@ from flask import Flask
 # Add backend to path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
+
 # Mock the heavy detector to avoid loading model during tests
 class MockDetector:
     def detect(self, image_path):
@@ -17,7 +18,10 @@ class MockDetector:
             "text_description": "Mocked detection result",
         }
 
-sys.modules["machine_learning_client.detector"] = types.SimpleNamespace(AnimalDetector=MockDetector)
+
+sys.modules["machine_learning_client.detector"] = types.SimpleNamespace(
+    AnimalDetector=MockDetector
+)
 
 from app import create_app
 
