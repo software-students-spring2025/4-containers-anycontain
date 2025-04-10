@@ -5,8 +5,6 @@ import base64
 from transformers import LlavaNextVideoProcessor, LlavaNextVideoForConditionalGeneration
 from openai import OpenAI
 
-OPENAI_API_KEY='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'
-
 class AnimalDetector:
     """Class to perform animal detection analysis using either local LLaVA-based model or OpenAI GPT-4o."""
 
