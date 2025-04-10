@@ -123,6 +123,8 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+web-app/x.env
+machine_learning_client/x.env
 
 # Spyder project settings
 .spyderproject

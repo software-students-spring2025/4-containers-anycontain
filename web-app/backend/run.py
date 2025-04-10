@@ -1,5 +1,4 @@
 """Entry point to run the Flask backend app."""
-
 import sys
 from app import create_app
 

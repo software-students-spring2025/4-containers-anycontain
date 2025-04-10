@@ -58,3 +58,4 @@ def test_upload_unsupported_format(client):
     )
     assert response.status_code in [200, 500]
     assert isinstance(response.get_json(), dict)
+

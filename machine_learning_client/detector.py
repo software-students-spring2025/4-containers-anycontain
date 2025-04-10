@@ -1,19 +1,20 @@
-# detector.py
+import os
 import cv2
 import torch
 import base64
 from transformers import LlavaNextVideoProcessor, LlavaNextVideoForConditionalGeneration
 from openai import OpenAI
-
+from dotenv import load_dotenv
 
 class AnimalDetector:
     """Class to perform animal detection analysis using either local LLaVA-based model or OpenAI GPT-4o."""
 
     def __init__(self, use_openai=False):
+        load_dotenv(os.path.join(os.path.dirname(__file__), '/app/machine_learning_client/x.env'))
         self.use_openai = use_openai
 
         if not self.use_openai:
-            self.device = "cuda" if torch.cuda.is_available() else "cpu"
+            self.device = "cpu" if os.getenv("FORCE_CPU") else ("cuda" if torch.cuda.is_available() else "cpu")
             self.processor = LlavaNextVideoProcessor.from_pretrained(
                 "llava-hf/LLaVA-NeXT-Video-7B-hf"
             )
