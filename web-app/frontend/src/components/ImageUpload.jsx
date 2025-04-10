@@ -4,7 +4,7 @@ import { InboxOutlined } from '@ant-design/icons';
 
 const { Dragger } = Upload;
 
-const ImageUpload = ({ setLoading, setResult }) => {
+const ImageUpload = ({ setLoading, setResult, setImageUrl }) => {
   const props = {
     name: 'file',
     multiple: false,
@@ -13,10 +13,13 @@ const ImageUpload = ({ setLoading, setResult }) => {
     customRequest({ file, onSuccess }) {
       setLoading(true);
 
+      const previewUrl = URL.createObjectURL(file);
+      setImageUrl(previewUrl);
+
       const formData = new FormData();
       formData.append('file', file);
 
-      fetch('http://localhost:5000/upload', {
+      fetch('http://localhost:5114/upload', {
         method: 'POST',
         body: formData,
       })
