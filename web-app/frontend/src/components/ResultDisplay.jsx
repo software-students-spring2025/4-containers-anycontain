@@ -1,28 +1,37 @@
 import React from 'react';
-import { Table, Card } from 'antd';
+import { Descriptions, Card, Tag, Image } from 'antd';
 
-const columns = [
-  {
-    title: 'Animal',
-    dataIndex: 'animal',
-    key: 'animal',
-  },
-  {
-    title: 'Confidence',
-    dataIndex: 'confidence',
-    key: 'confidence',
-    render: (val) => (val * 100).toFixed(2) + '%',
-  },
-];
+const ResultDisplay = ({ data, imageUrl }) => {
+  if (!data) return null;
 
-const ResultDisplay = ({ data }) => {
+  const detected = data.animal_or_not === 1;
+
   return (
-    <Card title="Recognition Result">
-      <Table
-        dataSource={data.results.map((item, index) => ({ ...item, key: index }))}
-        columns={columns}
-        pagination={false}
-      />
+    <Card title="Recognition Result" style={{ marginTop: 24 }}>
+      {imageUrl && (
+        <div style={{ textAlign: 'center', marginBottom: 16 }}>
+          <Image
+            src={imageUrl}
+            alt="Uploaded"
+            width={200}
+            height={200}
+            style={{ objectFit: 'cover', borderRadius: 8 }}
+            preview={false}
+          />
+        </div>
+      )}
+
+      <Descriptions bordered column={1} size="middle">
+        <Descriptions.Item label="Animal Detected">
+          {detected ? <Tag color="green">Yes</Tag> : <Tag color="red">No</Tag>}
+        </Descriptions.Item>
+        <Descriptions.Item label="Type">
+          {data.type || "Unknown"}
+        </Descriptions.Item>
+        <Descriptions.Item label="Description">
+          {data.text_description || "No description available."}
+        </Descriptions.Item>
+      </Descriptions>
     </Card>
   );
 };
