@@ -1,13 +1,12 @@
 [[source]]
+name = "pypi"
 url = "https://pypi.org/simple"
 verify_ssl = true
-name = "pypi"
 
 [packages]
 pylint = "*"
 black = "*"
 torch = "*"
-numpy = "*"
 transformers = "*"
 opencv-python = "*"
 python-dotenv = "*"
@@ -18,9 +17,8 @@ protobuf = "*"
 sentencepiece = "*"
 accelerate = "*"
 openai = "*"
+numpy = "*"
 
 [dev-packages]
 pytest = "*"
-numpy = "*"
-opencv-python = "*"
 pytest-cov = "*"
