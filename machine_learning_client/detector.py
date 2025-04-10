@@ -106,3 +106,4 @@ class AnimalDetector:
             "type": animal_type,
             "text_description": text_description,
         }
+    
