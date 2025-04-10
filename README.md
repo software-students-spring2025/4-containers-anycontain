@@ -50,4 +50,27 @@ This project implements a itegrated system with a website interface and machine 
 ### To run with a custom image:
     python machine_learning_client/main.py images/sample.png
 
+
+
+## Getting Started with Docker Compose
+
+1. **Place the provided `.env` file**  
+   Move the `.env` file you received into the project root (the same directory as `docker-compose.yml`).
+
+2. **Launch all services**  
+   ```bash
+   docker compose up
+   ```
+
+3. **Access the dashboard**  
+   Open your browser and go to:  
+   ```text
+   http://localhost
+   ```
+
+4. **Stop the stack**  
+   ```bash
+   docker-compose down
+   ```
+
 Build a containerized app that uses machine learning. See [instructions](./instructions.md) for details.
