@@ -47,7 +47,7 @@ This project implements a itegrated system with a website interface and machine 
 ### To run with the default sample image:
     python machine_learning_client/main.py
 
-### To run with a custom image:
+### To run with a custom image collected with your own camera:
     python machine_learning_client/main.py images/sample.png
 
 
@@ -58,6 +58,7 @@ This project implements a itegrated system with a website interface and machine 
    Please contact the Anycontain team to get the `x.env` file. Move the `x.env` file you received into the project root (the same directory as `docker-compose.yml`), `/web-app` and '/machine_learning_client'.
 
 2. **Launch all services**  
+    Note the build might take around 6 minutes
    ```bash
    docker compose up --build
    ```
@@ -66,6 +67,10 @@ This project implements a itegrated system with a website interface and machine 
    Open your browser and go to:  
    ```text
    http://localhost
+   ```
+   You can also use
+   ```bash
+   curl -F "file=@path_to_sensor_image.jpg" http://localhost:5114/upload
    ```
 
 4. **Stop the stack**  
