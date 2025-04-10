@@ -9,6 +9,7 @@ const { Title } = Typography;
 const App = () => {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
@@ -16,9 +17,17 @@ const App = () => {
         <Title level={3} style={{ color: 'white', margin: 0 }}>Animal Image Analyzer</Title>
       </Header>
       <Content style={{ padding: '2rem' }}>
-        <ImageUpload setLoading={setLoading} setResult={setResult} />
+        <ImageUpload
+          setLoading={setLoading}
+          setResult={setResult}
+          setImageUrl={setImageUrl}
+        />
         <Divider />
-        {loading ? <Spin size="large" /> : result && <ResultDisplay data={result} />}
+        {loading ? (
+          <Spin size="large" />
+        ) : (
+          result && <ResultDisplay data={result} imageUrl={imageUrl} /> 
+        )}
       </Content>
       <Footer style={{ textAlign: 'center' }}>
         &copy; 2025 Animal Detection Team

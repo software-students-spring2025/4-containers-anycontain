@@ -1,37 +1,8 @@
 import sys
 import base64
 import cv2
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from machine_learning_client.database import store_image, update_classification
 from machine_learning_client.detector import AnimalDetector
-from openai import OpenAI
-
-
-def encode_image(image_path):
-    with open(image_path, "rb") as image_file:
-        return base64.b64encode(image_file.read()).decode("utf-8")
-
-
-def detect_with_openai(image_path):
-    base64_image = encode_image(image_path)
-    client = OpenAI()
-    response = client.chat.completions.create(
-        model="gpt-4o",
-        messages=[
-            {
-                "role": "user",
-                "content": [
-                    {"type": "text", "text": "What's in this image? If there is an animal, mention its type; otherwise, say 'no animal'."},
-                    {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}},
-                ],
-            }
-        ],
-        max_tokens=100,
-    )
-    response_text = response.choices[0].message.content.strip()
-    return response_text
 
 
 def main():
@@ -54,23 +25,15 @@ def main():
     )
     print(f"Stored image with id: {inserted_id}")
 
-    if use_openai:
-        try:
-            response_text = detect_with_openai(image_path)
-            print("OpenAI GPT-4o detection result:", response_text)
-            result = AnimalDetector.parse_response(response_text)
-        except Exception as e:
-            print(f"Error during OpenAI detection: {e}", file=sys.stderr)
-            return
-    else:
-        detector = AnimalDetector()
-        try:
-            result = detector.detect(image_path)
-            print("Local model detection result:", result)
-        except Exception as e:
-            print(f"Error during local detection: {e}", file=sys.stderr)
-            return
-          
+    detector = AnimalDetector(use_openai=use_openai)
+    try:
+        result = detector.detect(image_path)
+        method_used = "OpenAI GPT-4o" if use_openai else "Local model"
+        print(f"{method_used} detection result:", result)
+    except Exception as e:
+        print(f"Error during {method_used} detection: {e}", file=sys.stderr)
+        return
+
     updated_count = update_classification(
         inserted_id,
         animal_or_not=result["animal_or_not"],

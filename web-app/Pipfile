@@ -7,13 +7,10 @@ name = "pypi"
 python_version = "3.11"
 
 [packages]
-# web-app backend
 flask = "*"
 flask-cors = "*"
 python-dotenv = "*"
 pymongo = {extras = ["srv"], version = "*"}
-
-# machine-learning-client
 torch = "*"
 numpy = "*"
 transformers = "*"
@@ -23,6 +20,7 @@ pillow = "*"
 protobuf = "*"
 sentencepiece = "*"
 accelerate = "*"
+openai = "*"
 
 [dev-packages]
 pylint = "*"

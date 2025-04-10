@@ -7,7 +7,6 @@ from machine_learning_client import main
 def dummy_store_image(
     _binary_data, animal_or_not=0, image_type="", text_description="", env_file="x.env"
 ):
-    """Dummy store_image function for testing."""
     return "dummy_id"
 
 
@@ -17,22 +16,19 @@ def dummy_update_classification(
     return 1
 
 
-def dummy_detect_with_openai(image_path):
-    return "Animal Detected: Yes. Type: TestAnimal. Description: Detected test animal."
-
-
 @pytest.fixture(autouse=True)
-def patch_database_and_openai(monkeypatch):
+def patch_database(monkeypatch):
     monkeypatch.setattr(main, "store_image", dummy_store_image)
     monkeypatch.setattr(main, "update_classification", dummy_update_classification)
-    monkeypatch.setattr(main, "detect_with_openai", dummy_detect_with_openai)
 
 
 @pytest.fixture
 def dummy_detector(monkeypatch):
     class DummyDetector:
-        @staticmethod
-        def detect(image_path):
+        def __init__(self, use_openai=False):
+            self.use_openai = use_openai
+
+        def detect(self, image_path):
             return {
                 "animal_or_not": 1,
                 "type": "TestAnimal",
@@ -58,7 +54,7 @@ def test_main_with_local_model(monkeypatch, tmp_path, capsys, dummy_detector):
     assert "Updated 1 document(s)" in captured
 
 
-def test_main_with_openai(monkeypatch, tmp_path, capsys):
+def test_main_with_openai(monkeypatch, tmp_path, capsys, dummy_detector):
     monkeypatch.chdir(tmp_path)
     test_image = tmp_path / "test.png"
     test_image.write_bytes(b"dummy image content")
