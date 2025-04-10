@@ -49,6 +49,9 @@ def upload_image():
 
     file_bytes = file.read()
 
+    if not file_bytes:
+        return jsonify({"error": "Uploaded file is empty"}), 400
+
     # Save the file temporarily
     with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as tmp:
         tmp.write(file_bytes)
