@@ -14,7 +14,7 @@ const App = () => {
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Header>
-        <Title level={3} style={{ color: 'white', margin: 0 }}>Animal Image Analyzer</Title>
+        <Title level={3} style={{ color: 'white', margin: 0 }}>Animal Detection</Title>
       </Header>
       <Content style={{ padding: '2rem' }}>
         <ImageUpload
@@ -30,7 +30,7 @@ const App = () => {
         )}
       </Content>
       <Footer style={{ textAlign: 'center' }}>
-        &copy; 2025 Animal Detection Team
+        &copy; 2025 AnyContain
       </Footer>
     </Layout>
   );
