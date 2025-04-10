@@ -5,10 +5,12 @@ on:
     branches:
       - main
       - zifan
+      - feature/image-upload
   pull_request:
     branches:
       - main
       - zifan
+      - feature/image-upload
 
 jobs:
   build_and_test:
