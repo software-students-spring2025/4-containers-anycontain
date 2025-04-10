@@ -67,7 +67,7 @@ def upload_image():
     )
 
     # Create an instance of the detector and run detection
-    detector = AnimalDetector()
+    detector = AnimalDetector(use_openai=True)
     try:
         result = detector.detect(tmp_path)
     except Exception as e:  # pylint: disable=broad-exception-caught
