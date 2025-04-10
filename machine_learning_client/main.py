@@ -1,4 +1,6 @@
 import sys
+import base64
+import cv2
 from machine_learning_client.database import store_image, update_classification
 from machine_learning_client.detector import AnimalDetector
 
