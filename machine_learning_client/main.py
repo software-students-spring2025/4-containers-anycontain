@@ -1,6 +1,9 @@
 import sys
 import base64
 import cv2
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from machine_learning_client.database import store_image, update_classification
 from machine_learning_client.detector import AnimalDetector
 from openai import OpenAI
