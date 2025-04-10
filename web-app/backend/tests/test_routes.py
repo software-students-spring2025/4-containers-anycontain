@@ -11,6 +11,9 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 # Mock the heavy detector to avoid loading model during tests
 class MockDetector:
+    def __init__(self, use_openai=False):
+        pass
+
     def detect(self, image_path):
         return {
             "animal_or_not": 1,
