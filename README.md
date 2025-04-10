@@ -42,12 +42,62 @@ This project implements a itegrated system with a website interface and machine 
    pipenv install --dev
    ```
 
-
 ## Example Usage
 ### To run with the default sample image:
     python machine_learning_client/main.py
 
-### To run with a custom image:
+### To run with a custom image collected with your own camera:
     python machine_learning_client/main.py images/sample.png
+
+### To run the web frontend (React):
+
+1. Open a new terminal and navigate to the frontend directory:
+
+   ```bash
+   cd web-app/frontend
+   ```
+
+2. Install dependencies (only needed the first time):
+
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+
+   ```bash
+   npm start
+   ```
+
+4. Visit the frontend in your browser:
+
+   ```text
+   http://localhost:3000
+   ```
+
+## Getting Started with Docker Compose
+
+1. **Place the provided `.env` file**  
+   Please contact the Anycontain team to get the `x.env` file. Move the `x.env` file you received into the project root (the same directory as `docker-compose.yml`), `/web-app` and '/machine_learning_client'.
+
+2. **Launch all services**  
+    Note the build might take around 6 minutes
+   ```bash
+   docker compose up --build
+   ```
+
+3. **Access the dashboard**  
+   Open your browser and go to:  
+   ```text
+   http://localhost
+   ```
+   You can also use
+   ```bash
+   curl -F "file=@path_to_sensor_image.jpg" http://localhost:5114/upload
+   ```
+
+4. **Stop the stack**  
+   ```bash
+   docker-compose down
 
 Build a containerized app that uses machine learning. See [instructions](./instructions.md) for details.
