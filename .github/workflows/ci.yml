@@ -19,6 +19,7 @@ jobs:
       matrix:
         python-version: ["3.11", "3.12"]
         subdir: ["machine_learning_client", "web-app"]
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -32,14 +33,13 @@ jobs:
         run: |
           python --version
           which python
-          echo $PATH
 
       - name: Install dependencies in ${{ matrix.subdir }}
         run: |
           cd ${{ matrix.subdir }}
           python -m pip install --upgrade pip
           pip install pipenv
-          pipenv install --dev 
+          pipenv install --dev --python $(which python)
 
       - name: Run Tests
         run: |
