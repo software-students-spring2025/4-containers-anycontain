@@ -19,7 +19,7 @@ const ImageUpload = ({ setLoading, setResult, setImageUrl }) => {
       const formData = new FormData();
       formData.append('file', file);
 
-      fetch('http://localhost:5114/upload', {
+      fetch('http://web_backend:5114/upload', {
         method: 'POST',
         body: formData,
       })
