@@ -1,13 +1,13 @@
 import sys
+import base64
+import cv2
 from machine_learning_client.database import store_image, update_classification
 from machine_learning_client.detector import AnimalDetector
 
 
 def main():
-    if len(sys.argv) > 1:
-        image_path = sys.argv[1]
-    else:
-        image_path = "sample.png"
+    use_openai = "--openai" in sys.argv
+    image_path = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith("--") else "sample.png"
 
     try:
         with open(image_path, "rb") as f:
@@ -25,16 +25,15 @@ def main():
     )
     print(f"Stored image with id: {inserted_id}")
 
-    detector = AnimalDetector()
+    detector = AnimalDetector(use_openai=use_openai)
     try:
         result = detector.detect(image_path)
+        method_used = "OpenAI GPT-4o" if use_openai else "Local model"
+        print(f"{method_used} detection result:", result)
     except Exception as e:
-        print(f"Error during detection: {e}", file=sys.stderr)
+        print(f"Error during {method_used} detection: {e}", file=sys.stderr)
         return
 
-    print("Detection result:", result)
-
-    # TODO: This should also update at the interface of web app
     updated_count = update_classification(
         inserted_id,
         animal_or_not=result["animal_or_not"],
@@ -47,3 +46,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
