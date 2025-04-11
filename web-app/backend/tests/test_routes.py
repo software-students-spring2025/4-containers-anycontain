@@ -1,11 +1,31 @@
 import sys
 import os
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
 import io
+import types
 import pytest
 from flask import Flask
+
+# Add backend to path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+
+# Mock the heavy detector to avoid loading model during tests
+class MockDetector:
+    def __init__(self, use_openai=False):
+        pass
+
+    def detect(self, image_path):
+        return {
+            "animal_or_not": 1,
+            "type": "MockedAnimal",
+            "text_description": "Mocked detection result",
+        }
+
+
+sys.modules["machine_learning_client.detector"] = types.SimpleNamespace(
+    AnimalDetector=MockDetector
+)
+
 from app import create_app
 
 
@@ -27,10 +47,10 @@ def test_upload_valid_image(client):
         content_type="multipart/form-data",
     )
 
-    assert response.status_code == 200 or response.status_code == 500
+    assert response.status_code == 200
     json_data = response.get_json()
     assert isinstance(json_data, dict)
-    assert "text_description" in json_data or "error" in json_data
+    assert "text_description" in json_data
 
 
 def test_upload_empty_file(client):
@@ -56,6 +76,8 @@ def test_upload_unsupported_format(client):
         data={"file": (fake_file, "test.txt")},
         content_type="multipart/form-data",
     )
-    assert response.status_code in [200, 500]
-    assert isinstance(response.get_json(), dict)
 
+    assert response.status_code == 200
+    json_data = response.get_json()
+    assert isinstance(json_data, dict)
+    assert "text_description" in json_data

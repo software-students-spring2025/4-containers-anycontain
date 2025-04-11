@@ -28,7 +28,7 @@ This project implements a itegrated system with a website interface and machine 
 
 - **Python 3.11** installed on your system.
 - [Pipenv](https://pipenv.pypa.io/en/latest/install/) installed globally.
-- A MongoDB instance. (For local testing, you can run MongoDB in a Docker container or use your local installation. For production, consider using MongoDB Atlas.)
+- A MongoDB instance. (For local testing, you can run MongoDB in our Docker container as long as `x.env` file is correctly set. For production, consider using MongoDB Atlas.)
 
 ### Steps to Set Up the Environment
 
@@ -43,7 +43,6 @@ This project implements a itegrated system with a website interface and machine 
    ```bash
    pipenv install --dev
    ```
-
 
 ### To run with the default sample image:
     python machine_learning_client/main.py

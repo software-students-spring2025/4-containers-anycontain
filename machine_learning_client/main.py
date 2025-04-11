@@ -6,7 +6,7 @@ from machine_learning_client.detector import AnimalDetector
 
 
 def main():
-    use_openai = "--openai" in sys.argv
+    use_openai = "--no-openai" not in sys.argv
     image_path = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith("--") else "sample.png"
 
     try:

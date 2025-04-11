@@ -63,7 +63,7 @@ def upload_image():
         animal_or_not=0,
         image_type="",
         text_description="Raw image",
-        env_file='/app/machine_learning_client/x.env',
+        env_file="/app/machine_learning_client/x.env",
     )
 
     # Create an instance of the detector and run detection
@@ -79,7 +79,7 @@ def upload_image():
         animal_or_not=result["animal_or_not"],
         image_type=result["type"],
         text_description=result["text_description"],
-        env_file='/app/machine_learning_client/x.env',
+        env_file="/app/machine_learning_client/x.env",
     )
 
     return jsonify(

@@ -42,9 +42,11 @@ jobs:
           cd ${{ matrix.subdir }}
           python -m pip install --upgrade pip
           pip install pipenv
+          pipenv --python "$(which python)"
           pipenv install --dev 
 
       - name: Run Tests
         run: |
           cd ${{ matrix.subdir }}
+          export MONGO_URI='mongodb+srv://zz4330:zhao2004@cluster0.mkz5hkh.mongodb.net/AnimalDetector?retryWrites=true&w=majority'
           pipenv run pytest --maxfail=1 --disable-warnings -q
