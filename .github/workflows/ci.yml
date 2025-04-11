@@ -42,6 +42,7 @@ jobs:
           cd ${{ matrix.subdir }}
           python -m pip install --upgrade pip
           pip install pipenv
+          pipenv --python "$(which python)"
           pipenv install --dev 
 
       - name: Run Tests
