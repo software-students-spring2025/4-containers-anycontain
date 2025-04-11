@@ -90,7 +90,7 @@ This project implements a itegrated system with a website interface and machine 
 3. **Access the dashboard**  
    Open your browser and go to:  
    ```text
-   http://localhost:3000
+   http://localhost
    ```
    You can also use
    ```bash
