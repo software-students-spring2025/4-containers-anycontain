@@ -1,8 +1,6 @@
 import os
 import cv2
-import torch
 import base64
-from transformers import LlavaNextVideoProcessor, LlavaNextVideoForConditionalGeneration
 from openai import OpenAI
 from dotenv import load_dotenv
 
@@ -14,6 +12,8 @@ class AnimalDetector:
         self.use_openai = use_openai
 
         if not self.use_openai:
+            import torch
+            from transformers import LlavaNextVideoProcessor, LlavaNextVideoForConditionalGeneration
             self.device = "cpu" if os.getenv("FORCE_CPU") else ("cuda" if torch.cuda.is_available() else "cpu")
             self.processor = LlavaNextVideoProcessor.from_pretrained(
                 "llava-hf/LLaVA-NeXT-Video-7B-hf"
