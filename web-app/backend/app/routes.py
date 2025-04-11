@@ -57,6 +57,7 @@ def upload_image():
         tmp.write(file_bytes)
         tmp_path = tmp.name
 
+    print("Storing the data!")
     # Store the image in the database
     inserted_id = store_image(
         file_bytes,
