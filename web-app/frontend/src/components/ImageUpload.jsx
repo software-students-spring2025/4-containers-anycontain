@@ -19,8 +19,7 @@ const ImageUpload = ({ setLoading, setResult, setImageUrl }) => {
       const formData = new FormData();
       formData.append('file', file);
       
-      fetch('http://web_backend:5114/upload', {
-
+      fetch('http://localhost:5114/upload', {
         method: 'POST',
         body: formData,
       })
@@ -28,6 +27,7 @@ const ImageUpload = ({ setLoading, setResult, setImageUrl }) => {
         .then(data => {
           setTimeout(() => {
             setResult(data);
+            console.log('ResultDisplay data:', data);
             setLoading(false);
             onSuccess();
           }, 1000);
