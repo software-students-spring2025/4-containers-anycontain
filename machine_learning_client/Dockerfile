@@ -23,4 +23,4 @@ RUN ln -s /app /app/machine_learning_client
 # 5) (Optional) install your project so tests etc. can pick it up
 #    e.g. pip install --no-cache-dir -e .  
 
-CMD ["python", "main.py"]
+CMD ["python", "main.py", "--openai"]
